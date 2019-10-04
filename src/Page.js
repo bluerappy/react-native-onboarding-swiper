@@ -54,14 +54,16 @@ const Page = ({
   }
 
   return (
-    <KeyboardAvoidingView {...Platform.OS === 'ios' && {behavior: 'padding'}}>
-      <View style={[styles.container, containerStyles, { width, height }]}>
-        {isVisible && <View style={[styles.imageContainer, imageContainerStyles]}>{image}</View>}
-        {titleElement}
-        {subtitleElement}
-        {render && render()}
-      </View>
-    </KeyboardAvoidingView>
+    <ScrollView>
+      <KeyboardAvoidingView {...Platform.OS === 'ios' && {behavior: 'padding'}}>
+        <View style={[styles.container, containerStyles, { width, minHeight: height }]}>
+          {isVisible && <View style={[styles.imageContainer, imageContainerStyles]}>{image}</View>}
+          {titleElement}
+          {subtitleElement}
+          {render && render()}
+        </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 

@@ -65,8 +65,9 @@ class Onboarding extends Component {
   };
 
   _onLayout = () => {
+    const { bottomBarHeight, showPagination } = this.props;
     const { width, height } = Dimensions.get('window');
-    this.setState({ width, height });
+    this.setState({ width, height: height - (showPagination ? bottomBarHeight + 24 : 0)) });
   };
 
   keyExtractor = (item, index) => index.toString();
@@ -75,11 +76,13 @@ class Onboarding extends Component {
     const { image, title, subtitle, backgroundColor, render } = item;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
     const {
+      bottomBarHeight,
       containerStyles,
       imageContainerStyles,
       allowFontScalingText,
       titleStyles,
       subTitleStyles,
+      showPagination,
     } = this.props;
 
     return (
@@ -90,7 +93,7 @@ class Onboarding extends Component {
         subtitle={subtitle}
         render={render}
         width={this.state.width || Dimensions.get('window').width}
-        height={this.state.height || Dimensions.get('window').height}
+        height={this.state.height || (Dimensions.get('window').height - (showPagination ? bottomBarHeight + 24 : 0))}
         containerStyles={containerStyles}
         imageContainerStyles={imageContainerStyles}
         allowFontScaling={allowFontScalingText}
