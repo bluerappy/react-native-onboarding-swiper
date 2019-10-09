@@ -67,7 +67,7 @@ class Onboarding extends Component {
   _onLayout = () => {
     const { bottomBarHeight, showPagination } = this.props;
     const { width, height } = Dimensions.get('window');
-    this.setState({ width, height: height - (showPagination ? bottomBarHeight + 24 : 0)) });
+    this.setState({ width, height: height - (showPagination ? bottomBarHeight + 24 : 0)});
   };
 
   keyExtractor = (item, index) => index.toString();
